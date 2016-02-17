@@ -7,6 +7,8 @@ running on a box that this docker container will be able to access.
 Add the IP address of the DSE box in the config.txt file (**Hint**: this should not be
 localhost)
 
+##for OSX:
+
 ```
 #setup
 docker-machine start default
