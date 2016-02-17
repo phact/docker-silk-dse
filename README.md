@@ -1,5 +1,12 @@
 #docker-silk-dse
 
+Silk is lucidwork's port of Kibana V4 for Solr. This is a docker container for
+running Silk on DSE Search. It assumes you have DSE (with search enabled)
+running on a box that this docker container will be able to access.
+
+Add the IP address of the DSE box in the config.txt file (**Hint**: this should not be
+localhost)
+
 ```
 #setup
 docker-machine start default
