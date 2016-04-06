@@ -7,6 +7,9 @@ running on a box that this docker container will be able to access.
 Add the IP address of the DSE box in the config.txt file (**Hint**: this should not be
 localhost)
 
+##first:
+    git clone https://github.com/phact/docker-silk-dse
+
 ##for OSX:
 
 ```
@@ -23,3 +26,11 @@ docker run -d -p 0.0.0.0:5601:5601  --name silk silk-image
 docker run -it  -p 0.0.0.0:5601:5601  --name silk silk-image
 docker-machine ip default
 ```
+
+##for linux:
+#setup
+install docker https://docs.docker.com/engine/installation/l
+
+#start docker
+sudo service docker start
+
