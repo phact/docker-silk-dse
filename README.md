@@ -29,9 +29,17 @@ docker-machine ip default
 
 ##for linux:
 install docker https://docs.docker.com/engine/installation/linux
+
+add your user to the docker group
+    sudo gpasswd -a ${USER} docker
+
+and refresh 
+   newgrp docker 
+
+
 ````
 #start docker
-sudo service docker start
-sudo docker build -t silk-image .
-sudo docker run -d -p 0.0.0.0:5601:5601  --name silk silk-image
+service docker start
+docker build -t silk-image .
+docker run -d -p 0.0.0.0:5601:5601  --name silk silk-image
 ````
