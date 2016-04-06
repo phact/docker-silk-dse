@@ -33,5 +33,5 @@ install docker https://docs.docker.com/engine/installation/linux
 #start docker
 sudo service docker start
 sudo docker build -t silk-image .
-sudo run -d -p 0.0.0.0:5601:5601  --name silk silk-image
+sudo docker run -d -p 0.0.0.0:5601:5601  --name silk silk-image
 ````
