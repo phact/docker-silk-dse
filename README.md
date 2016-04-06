@@ -28,9 +28,10 @@ docker-machine ip default
 ```
 
 ##for linux:
-#setup
-install docker https://docs.docker.com/engine/installation/l
-
+install docker https://docs.docker.com/engine/installation/linux
+````
 #start docker
 sudo service docker start
-
+sudo docker build -t silk-image .
+sudo run -d -p 0.0.0.0:5601:5601  --name silk silk-image
+````
