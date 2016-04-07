@@ -7,8 +7,22 @@ running on a box that this docker container will be able to access.
 Add the IP address of the DSE box in the config.txt file (**Hint**: this should not be
 localhost)
 
-##first:
+##prepare DSE
+on the machine where you are running DSE do the following.
+
+##clone the repo:
     git clone https://github.com/phact/docker-silk-dse
+
+Set up keyspace and table:
+
+    wget https://raw.githubusercontent.com/phact/silk/dev/silkconfig/conf/schema.cql
+    
+    cqlsh -f schema.cql
+    
+Set up the DSE Search core before kicking off the container:
+    
+    chmod +x create_core.sh
+    ./create_core.sh
 
 ##for OSX:
 
