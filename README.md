@@ -60,3 +60,5 @@ docker run -d -p 0.0.0.0:5601:5601  --name silk silk-image
 #or if it's not working run without detaching to troubeshoot
 docker run -p 0.0.0.0:5601:5601  --name silk silk-image
 ````
+
+You'll need a DSE Search core with a date / time indexed column to get started using Silk!
