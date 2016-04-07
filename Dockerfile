@@ -1,15 +1,14 @@
-FROM node:0.10.34
+FROM node:0.12.13
 RUN apt-get update && apt-get install -y \
-    git nodejs npm git-core
+    git git-core
 RUN git clone https://github.com/phact/silk.git
-RUN npm install -g bower 
-RUN cd silk && npm install grunt
-RUN npm install -g grunt-cli
-#other dependencies
-RUN cd silk && npm install load-grunt-config lodash js-yaml glob bluebird mkdirp event-stream simple-git marked tar marked-text-renderer request grunt-contrib-clean  grunt-contrib-compress  grunt-contrib-copy  grunt-contrib-jade  grunt-contrib-jshint  grunt-contrib-less  grunt-contrib-requirejs  grunt-contrib-watch  grunt-esvm  grunt-mocha  grunt-replace  grunt-run  grunt-s3  grunt-saucelabs  grunt-simple-mocha  html-entities
-RUN cd silk && bower install --allow-root
-RUN cd silk && ls 
-RUN cd silk && grunt build
+RUN cd silk && npm install
+RUN cd silk && npm install -g grunt-cli
+RUN cd silk && npm install -g bower
+RUN cd silk && bower install  --allow-root
+RUN cd silk && find . -name bower_components
+RUN ls /silk/src/kibana/bower_components/require-css/css-builder.js
+RUN cd silk && grunt build --verbose 
 
 #Make sure you've added the IP where DSE sits to your conifig.txt
 COPY config.txt .
@@ -21,6 +20,6 @@ RUN sed -i "s/solr_url: \"http:\/\/localhost:8983/solr_url: \"http:\/\/$(sed 's:
 
 #now let's load some data to play with
 
-
 EXPOSE 5601 
-ENTRYPOINT cd silk && npm run server silk
+
+ENTRYPOINT /bin/bash ; cd silk && npm run --loglevel verbose server silk && /bin/bash
