@@ -35,9 +35,9 @@ docker rm -f $(docker ps -aq)
 docker rmi -f $(docker images -aq)
 #build
 docker build -t silk-image .
-docker run -d -p 0.0.0.0:5601:5601  --name silk silk-image
+docker run --net=host -d -p 0.0.0.0:5601:5601  --name silk silk-image
 #or for debug
-docker run -it  -p 0.0.0.0:5601:5601  --name silk silk-image
+docker run -it --net=host -p 0.0.0.0:5601:5601  --name silk silk-image
 docker-machine ip default
 ```
 
@@ -58,7 +58,7 @@ docker build -t silk-image .
 docker run -d -p 0.0.0.0:5601:5601  --name silk silk-image
 
 #or if it's not working run without detaching to troubeshoot
-docker run -p 0.0.0.0:5601:5601  --name silk silk-image
+docker run --net=host -p 0.0.0.0:5601:5601  --name silk silk-image
 ````
 
 You'll need a DSE Search core with a date / time indexed column to get started using Silk!
