@@ -55,7 +55,7 @@ and refresh
 #start docker
 service docker start
 docker build -t silk-image .
-docker run -d -p 0.0.0.0:5601:5601  --name silk silk-image
+docker run --net=host -d -p 0.0.0.0:5601:5601  --name silk silk-image
 
 #or if it's not working run without detaching to troubeshoot
 docker run --net=host -p 0.0.0.0:5601:5601  --name silk silk-image
