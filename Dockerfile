@@ -12,14 +12,14 @@ RUN cd silk && grunt build --verbose
 
 #Make sure you've added the IP where DSE sits to your conifig.txt
 COPY config.txt .
-RUN sed -e "s/localhost:8983/$(sed 's:/:\\/:g' config.txt)/" silk/silkconfig/conf/create_core.sh >  silk/silkconfig/conf/create_core_mod.sh
-RUN cat silk/silkconfig/conf/create_core_mod.sh
-RUN cd silk/silkconfig/conf/ && chmod +x ./create_core_mod.sh
-RUN cd silk/silkconfig/conf/ && ./create_core_mod.sh
+
+#Assumes you already set up your silk search core manually
+#RUN sed -e "s/localhost:8983/$(sed 's:/:\\/:g' config.txt)/" silk/silkconfig/conf/create_core.sh >  silk/silkconfig/conf/create_core_mod.sh
+#RUN cat silk/silkconfig/conf/create_core_mod.sh
+#RUN cd silk/silkconfig/conf/ && chmod +x ./create_core_mod.sh
+#RUN cd silk/silkconfig/conf/ && ./create_core_mod.sh
 RUN sed -i "s/solr_url: \"http:\/\/localhost:8983/solr_url: \"http:\/\/$(sed 's:/:\\/:g' config.txt)/" silk/src/server/config/kibana.yml
 
-#now let's load some data to play with
-
-EXPOSE 5601 
+EXPOSE 5601
 
 ENTRYPOINT /bin/bash ; cd silk && npm run --loglevel verbose server silk && /bin/bash
